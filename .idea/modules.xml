@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/synonym app.iml" filepath="$PROJECT_DIR$/.idea/synonym app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/synonym-app-backend/synonym-app-backend.iml" filepath="$PROJECT_DIR$/synonym-app-backend/synonym-app-backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/synonym-app-frontend.iml" filepath="$PROJECT_DIR$/synonym-app-frontend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/synonym-app-parent.iml" filepath="$PROJECT_DIR$/.idea/synonym-app-parent.iml" />
     </modules>
   </component>
 </project>

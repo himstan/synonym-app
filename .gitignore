@@ -1,2 +1,7 @@
 # Project exclude paths
 /node_modules/
+/.idea/inspectionProfiles/Project_Default.xml
+/synonym-app-frontend.iml
+/.idea/synonym-app-parent.iml
+/.idea/workspace.xml
+/.idea/modules.xml
