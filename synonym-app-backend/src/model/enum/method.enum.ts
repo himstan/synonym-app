@@ -1,3 +1,6 @@
+/**
+ * The possible REST methods that are available to use.
+ */
 export enum Method {
   ALL = 'all',
   GET = 'get',

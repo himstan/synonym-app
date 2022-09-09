@@ -5,8 +5,11 @@ import { SynonymAddRequestDto } from "../model/dto/synonym-add-request.dto";
 import { SynonymGetResponseDto } from "../model/dto/synonym-get-response.dto";
 import { Route } from "../model/model/route.model";
 import { SynonymService } from "../service/synonym.service";
-import { body } from "express-validator";
+import { body, param } from "express-validator";
 
+/**
+ * Controller class for handling all the synonym route calls.
+ */
 export class SynonymController extends Controller{
 
   path = '/api/synonym'
@@ -15,7 +18,13 @@ export class SynonymController extends Controller{
       path: '/:word',
       method: Method.GET,
       handler: this.getSynonyms,
-      localMiddleware: []
+      localMiddleware: [
+        param('word', 'Field is missing')
+          .exists({checkFalsy: true, checkNull: true}),
+        param('word' , 'The field\'s length is lower than 1 or higher than 12')
+          .isLength({min: 1, max: 20}),
+        this.validate
+      ]
     },
     {
       path: '/',
@@ -25,7 +34,7 @@ export class SynonymController extends Controller{
         body(['word', 'synonym'], 'Field is missing')
           .exists({checkFalsy: true, checkNull: true}),
         body(['word', 'synonym'], 'The field\'s length is lower than 1 or higher than 12')
-          .isLength({min: 1, max: 12}),
+          .isLength({min: 1, max: 20}),
         this.validate
       ]
     }
@@ -38,27 +47,23 @@ export class SynonymController extends Controller{
     this.synonymService = new SynonymService();
   }
 
+  /**
+   * Handler for getting the synonyms through an endpoint.
+   */
   getSynonyms(req: Request, res: Response, next: NextFunction): void {
-    const word = req.params?.word;
-    try {
-      const synonyms = this.synonymService.getSynonymsFor(word);
-      this.sendSuccess(res, SynonymController.buildResponseDto(word, synonyms))
-    } catch (error) {
-      console.error(error);
-      this.sendError(res, { error: `There was a problem while fetching synonyms for ${word}` });
-    }
+    const word = req.params.word;
+    const synonyms = this.synonymService.getSynonymsFor(word);
+    this.sendSuccess(res, SynonymController.buildResponseDto(word, synonyms))
   }
 
+  /**
+   * Handler for adding a new synonym for a word.
+   */
   addSynonym(req: Request, res: Response, next: NextFunction): void {
     const requestDto = req.body as SynonymAddRequestDto;
     const { word, synonym } = requestDto;
-    try {
-      this.synonymService.addSynonymFor(word, synonym);
-      this.sendSuccess(res);
-    } catch (error) {
-      console.error(error);
-      this.sendError(res, { error: `There was a problem while adding synonym: ${synonym} for word: ${word}` });
-    }
+    this.synonymService.addSynonymFor(word, synonym);
+    this.sendSuccess(res);
   }
 
   private static buildResponseDto(word: string, synonyms: Set<string>): SynonymGetResponseDto {
