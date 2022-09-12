@@ -2,7 +2,7 @@ import { json, urlencoded } from "express";
 import cors from 'cors';
 
 export const corsConfig = {
-  origin: 'http://localhost:3000',
+  origin: process.env.FRONTEND_URL,
 }
 
 export const globalMiddlewares = [
