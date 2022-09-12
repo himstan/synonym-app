@@ -43,6 +43,11 @@ span {
             outline: none;
             box-shadow: none;
         }
+
+        &:last-child {
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
     }
 }
 
