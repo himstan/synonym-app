@@ -75,7 +75,7 @@ export function AddSynonymDialog(props: AddSynonymDialogProps) {
           className="synonym-input"
           placeholder={"Add synonym..."}
           value={synonym}
-          onChange={(e) => setSynonym(e.target.value)}
+          onChange={(e) => setSynonym(e.target.value.toLowerCase)}
           onKeyDown={handleKeyPress}
         />
         <div className="input-error-container">

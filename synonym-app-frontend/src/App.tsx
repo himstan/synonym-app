@@ -58,7 +58,7 @@ function App() {
           className="synonym-input"
           placeholder="Search for synonyms..."
           value={word}
-          onChange={(e) => setWord(e.target.value)}
+          onChange={(e) => setWord(e.target.value.toLowerCase)}
           onKeyDown={handleKeyPress}
         />
         <div className="input-error-container">
