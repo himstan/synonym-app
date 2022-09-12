@@ -1,6 +1,6 @@
 import { InputError } from "../enum/input-error.enum";
 import { MAX_LENGTH } from "../constant/validation.constant";
-import { Dispatch, SetStateAction } from "react";
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
 
 export const validateInput = (
   word: string,
@@ -23,4 +23,8 @@ export const validateInput = (
 
 export const isKeyEnter = (event: any): boolean => {
   return event.key === 'Enter';
+}
+
+export const getInputValue = (event: ChangeEvent<HTMLInputElement>): string => {
+  return event?.target?.value.toLowerCase();
 }

@@ -1,7 +1,7 @@
 import { Dialog } from "primereact/dialog";
 import React, { Dispatch, SetStateAction, useRef, useState } from "react";
 import { InputError } from "../../core/enum/input-error.enum";
-import { isKeyEnter, validateInput } from "../../core/util/form.util";
+import { getInputValue, isKeyEnter, validateInput } from "../../core/util/form.util";
 import * as synonymService from "../../service/synonym.service";
 import { Toast } from "primereact/toast";
 
@@ -75,7 +75,7 @@ export function AddSynonymDialog(props: AddSynonymDialogProps) {
           className="synonym-input"
           placeholder={"Add synonym..."}
           value={synonym}
-          onChange={(e) => setSynonym(e.target.value.toLowerCase)}
+          onChange={(e) => setSynonym(getInputValue(e))}
           onKeyDown={handleKeyPress}
         />
         <div className="input-error-container">

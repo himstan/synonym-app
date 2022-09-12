@@ -5,7 +5,7 @@ import './core/enum/input-error.enum'
 import { InputError } from "./core/enum/input-error.enum";
 import { Button } from "primereact/button";
 import { AddSynonymDialog } from "./component/add-synonym-dialog/add-synonym-dialog";
-import { isKeyEnter, validateInput } from "./core/util/form.util";
+import { getInputValue, isKeyEnter, validateInput } from "./core/util/form.util";
 
 function App() {
 
@@ -18,10 +18,15 @@ function App() {
 
   const fetchSynonyms = (): void => {
     if (validateInput(word, setInputErrors)) {
-      synonymService.fetchSynonyms(word).subscribe(result => {
-        setSearchedUpWord(word);
-        setWord('');
-        setSynonyms(result.synonyms)
+      synonymService.fetchSynonyms(word).subscribe({
+        next: result => {
+          setSearchedUpWord(word);
+          setWord('');
+          setSynonyms(result.synonyms)
+        },
+        error: () => {
+          setInputErrors([InputError.INTERNAL_ERROR]);
+        }
       });
     } else {
       setSynonyms([]);
@@ -58,7 +63,7 @@ function App() {
           className="synonym-input"
           placeholder="Search for synonyms..."
           value={word}
-          onChange={(e) => setWord(e.target.value.toLowerCase)}
+          onChange={(e) => setWord(getInputValue(e))}
           onKeyDown={handleKeyPress}
         />
         <div className="input-error-container">
@@ -76,7 +81,7 @@ function App() {
                   )
                 }
                 {
-                  hasError(InputError.MAX_LENGTH) && (
+                  hasError(InputError.INTERNAL_ERROR) && (
                     <span>There was an internal error while fetching the synonyms.</span>
                   )
                 }
@@ -86,7 +91,7 @@ function App() {
         </div>
       </div>
       {
-        isInputTouched && searchedUpWord.length && (
+        isInputTouched && !!searchedUpWord.length && (
           <div className="result-container">
             <div className="result-header">
               {
