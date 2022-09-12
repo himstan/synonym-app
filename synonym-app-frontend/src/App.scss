@@ -1,0 +1,98 @@
+.app-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../public/library.jpg");
+    background-size: cover;
+    background-position: center;
+    backdrop-filter: blur();
+
+    .input-container {
+        padding-top: 25px;
+    }
+
+    .result-container {
+        display: flex;
+        flex-direction: column;
+        border-radius: 20px;
+        border-width: 0;
+        background-color: rgba(255,255,255,0.75);
+        width: 300px;
+        min-height: 500px;
+
+        .result-body{
+            padding: 25px;
+            flex: 1;
+
+            .synonym-table-container {
+                display: flex;
+                flex-direction: column;
+
+                span {
+                    text-align: center;
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+                    border-color: gray;
+                    border-style: solid;
+                    border-left-width: 0;
+                    border-right-width: 0;
+                    border-top-width: 1px;
+                    border-bottom-width: 1px;
+
+                    &:first-child {
+                        border-top-width: 0;
+                    }
+
+                    &:last-child {
+                        border-bottom-width: 0;
+                    }
+                }
+            }
+
+            .empty-table-container {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding-bottom: 100px;
+                text-align: center;
+
+                span {
+                    padding-bottom: 10px;
+                }
+            }
+        }
+
+        .result-header {
+            padding: 1.25rem;
+            font-size: 18px;
+            text-align: center;
+            font-weight: 700;
+
+            .word {
+                font-style: italic;
+                color: gray;
+            }
+        }
+
+        .result-footer {
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            margin-top: auto;
+            height: 70px;
+
+            .p-button {
+                border-radius: 20px;
+
+                .word {
+                    font-style: italic;
+                    color: lightblue;
+                }
+            }
+        }
+    }
+}

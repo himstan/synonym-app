@@ -1,0 +1,77 @@
+html, body, #root {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+span {
+    font-size: 16px;
+    font-family: sans-serif;
+    font-weight: 600;
+}
+
+.synonym-input {
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: 20px;
+    border-width: 0;
+    width: 300px;
+    text-align: center;
+    font-size: 16px;
+    font-family: sans-serif;
+    font-weight: 700;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    box-shadow: 3px 3px 10px black;
+
+    &:hover, &:active, &:focus, &:focus-visible {
+        outline: none;
+    }
+}
+
+.input-error-container {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+
+    .input-errors {
+        background-color: rgba(255, 255, 255, 0.75);
+        border-radius: 0 0 20px 20px;
+        height: fit-content;
+        width: 85%;
+        text-align: center;
+        color: crimson;
+        box-shadow: 3px 3px 10px black;
+    }
+}
+
+.p-dialog {
+    height: 300px;
+    width: 400px;
+
+    .p-dialog-header .p-dialog-header-icon:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+    .p-dialog-content, .p-dialog-header {
+        background-color: rgba(255, 255, 255, 0.85);
+    }
+
+    .p-dialog-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .p-dialog-header {
+        span .word {
+            font-style: italic;
+            color: gray;
+        }
+    }
+}
+
+.p-link:focus {
+    box-shadow: none;
+}
