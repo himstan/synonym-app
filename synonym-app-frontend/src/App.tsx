@@ -75,13 +75,18 @@ function App() {
                     <span>The word can't be longer than 20 letters.</span>
                   )
                 }
+                {
+                  hasError(InputError.MAX_LENGTH) && (
+                    <span>There was an internal error while fetching the synonyms.</span>
+                  )
+                }
               </div>
             )
           }
         </div>
       </div>
       {
-        isInputTouched && isInputValid() && (
+        isInputTouched && searchedUpWord.length && (
           <div className="result-container">
             <div className="result-header">
               {

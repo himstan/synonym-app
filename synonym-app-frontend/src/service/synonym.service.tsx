@@ -2,7 +2,7 @@ import { from, map, mergeMap, Observable, throwError } from "rxjs";
 import { fromFetch } from "rxjs/fetch";
 import { SynonymGetResponseDto } from "../model/dto/synonym-get-response.dto";
 
-const SERVER_URL = process.env.BACKEND_URL;
+const SERVER_URL = process.env.REACT_APP_BACKEND_URL;
 const url = SERVER_URL + '/api/synonym/';
 
 export function fetchSynonyms(word: string): Observable<SynonymGetResponseDto> {

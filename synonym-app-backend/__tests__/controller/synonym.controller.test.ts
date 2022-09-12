@@ -1,18 +1,20 @@
 import 'jest';
 import request from 'supertest';
-import {
-  StatusCodes,
-} from 'http-status-codes';
-import { IntegrationHelpers } from "../helper/integration.helper";
+import { StatusCodes, } from 'http-status-codes';
 import { Application } from "express";
+import { IntegrationHelpers } from "../helper/integration.helper";
 
 
 describe('Synonym controller tests', () => {
   let app: Application;
 
-  beforeAll(async() => {
+  beforeAll(async () => {
     app = await IntegrationHelpers.getApp(true);
   });
+
+  afterAll(async () => {
+    await IntegrationHelpers.closeApp();
+  })
 
   it('Get synonyms for word without any', async () => {
     const word = 'A';

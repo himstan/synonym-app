@@ -29,8 +29,8 @@ export class SynonymMemoryRepository implements SynonymRepository{
     const synonyms = this.getSynonymsFor(word);
     synonyms.add(word);
     synonyms.add(synonym);
-    this.lookupMap.set(word, lookupKey);
-    this.lookupMap.set(synonym, lookupKey);
+    this.addToLookupMap(word, lookupKey);
+    this.addToLookupMap(synonym, lookupKey);
     this.synonimMap.set(lookupKey, synonyms);
   }
 
@@ -39,6 +39,10 @@ export class SynonymMemoryRepository implements SynonymRepository{
    */
   public hasSynonyms(word: string): boolean {
     return this.lookupMap.has(word);
+  }
+
+  private addToLookupMap(word: string, lookupKey: string): void {
+    this.lookupMap.set(word, lookupKey);
   }
 
   private getLookupKey(word: string): string {

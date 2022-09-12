@@ -14,8 +14,8 @@ test("Check if word has any synonym", async () => {
 });
 
 test("Adding a synonym then getting it back", async () => {
-  const mockWord = 'A';
-  const mockSynonym = 'B';
+  const mockWord = 'a';
+  const mockSynonym = 'b';
   synonymService.addSynonymFor(mockWord, mockSynonym);
   const synonyms = synonymService.getSynonymsFor(mockWord);
   const negatedSynonyms = synonymService.getSynonymsFor(mockSynonym);

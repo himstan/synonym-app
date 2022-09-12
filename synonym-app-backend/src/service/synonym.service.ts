@@ -20,7 +20,7 @@ export class SynonymService {
    * @return  The set of synonyms for the word.
    */
   public getSynonymsFor(word: string): Set<string> {
-    return this.repository.getSynonymsFor(word);
+    return this.repository.getSynonymsFor(word.toLowerCase());
   }
 
   /**
@@ -30,7 +30,7 @@ export class SynonymService {
    * @param synonym The synonym for the word.
    */
   public addSynonymFor(word: string, synonym: string): void {
-    return this.repository.addSynonymFor(word, synonym);
+    return this.repository.addSynonymFor(word.toLowerCase(), synonym.toLowerCase());
   }
 
   /**
@@ -41,6 +41,6 @@ export class SynonymService {
    * @return Returns true if there are any synonyms for the word, false if there are not.
    */
   public hasSynonyms(word: string): boolean {
-    return this.repository.hasSynonyms(word);
+    return this.repository.hasSynonyms(word.toLowerCase());
   }
 }
