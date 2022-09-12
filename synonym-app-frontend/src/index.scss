@@ -10,21 +10,39 @@ span {
     font-weight: 600;
 }
 
-.synonym-input {
+.p-inputgroup {
+    display: flex;
     background-color: rgba(255, 255, 255, 0.75);
     border-radius: 20px;
     border-width: 0;
     width: 300px;
-    text-align: center;
-    font-size: 16px;
-    font-family: sans-serif;
-    font-weight: 700;
-    padding-top: 25px;
-    padding-bottom: 25px;
+    padding: 0;
     box-shadow: 3px 3px 10px black;
 
-    &:hover, &:active, &:focus, &:focus-visible {
-        outline: none;
+    & > input {
+        flex: 1;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        padding-left: 25px;
+        background-color: transparent;
+        border-width: 0;
+        font-size: 16px;
+        font-family: sans-serif;
+        font-weight: 700;
+
+        &:hover, &:active, &:focus, &:focus-visible {
+            outline: none;
+        }
+    }
+
+    & > .p-button {
+        opacity: 0.75;
+        padding-left: 3px;
+
+        &:hover, &:active, &:focus, &:focus-visible {
+            outline: none;
+            box-shadow: none;
+        }
     }
 }
 
@@ -45,7 +63,7 @@ span {
 }
 
 .p-dialog {
-    height: 300px;
+    height: 250px;
     width: 400px;
 
     .p-dialog-header .p-dialog-header-icon:focus {
@@ -59,7 +77,6 @@ span {
 
     .p-dialog-content {
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
     }

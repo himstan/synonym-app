@@ -4,6 +4,7 @@ import { InputError } from "../../core/enum/input-error.enum";
 import { getInputValue, isKeyEnter, validateInput } from "../../core/util/form.util";
 import * as synonymService from "../../service/synonym.service";
 import { Toast } from "primereact/toast";
+import { Button } from "primereact/button";
 
 export interface AddSynonymDialogProps {
   isVisible: boolean;
@@ -70,14 +71,18 @@ export function AddSynonymDialog(props: AddSynonymDialogProps) {
   return (
     <div>
       <Dialog draggable={false} header={<span>Add synonym for <span className="word">{props.word}</span></span>} visible={props.isVisible} onHide={() => hideDialog()}>
-        <input
-          type="text"
-          className="synonym-input"
-          placeholder={"Add synonym..."}
-          value={synonym}
-          onChange={(e) => setSynonym(getInputValue(e))}
-          onKeyDown={handleKeyPress}
-        />
+        <div className="p-inputgroup">
+          <input
+            type="text"
+            className="synonym-input"
+            placeholder={"Add synonym..."}
+            value={synonym}
+            onChange={(e) => setSynonym(getInputValue(e))}
+            onKeyDown={handleKeyPress}
+          />
+          <Button label="Add" onClick={saveSynonym}/>
+        </div>
+
         <div className="input-error-container">
           {
             !isInputValid() && (

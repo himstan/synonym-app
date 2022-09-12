@@ -17,6 +17,7 @@ function App() {
   const [isDialogVisible, setDialogVisibility] = useState<boolean>(false);
 
   const fetchSynonyms = (): void => {
+    setInputTouched(true);
     if (validateInput(word, setInputErrors)) {
       synonymService.fetchSynonyms(word).subscribe({
         next: result => {
@@ -37,7 +38,6 @@ function App() {
 
   const handleKeyPress = (event: any): void => {
     if (isKeyEnter(event)) {
-      setInputTouched(true);
       fetchSynonyms();
     }
   }
@@ -58,14 +58,18 @@ function App() {
   return (
     <div className="app-container">
       <div className="input-container">
-        <input
-          type="text"
-          className="synonym-input"
-          placeholder="Search for synonyms..."
-          value={word}
-          onChange={(e) => setWord(getInputValue(e))}
-          onKeyDown={handleKeyPress}
-        />
+        <div className="p-inputgroup">
+          <input
+            type="text"
+            className="synonym-input"
+            placeholder="Search for synonyms..."
+            value={word}
+            onChange={(e) => setWord(getInputValue(e))}
+            onKeyDown={handleKeyPress}
+          />
+          <Button label="Search" onClick={fetchSynonyms}/>
+        </div>
+
         <div className="input-error-container">
           {
             !isInputValid() && (
