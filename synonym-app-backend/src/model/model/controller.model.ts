@@ -28,15 +28,13 @@ export abstract class Controller {
    * Sends a 200 OK response with an optional payload.
    *
    * @param res   The response object.
-   * @param data  The payload that is sent back.
+   * @param body  The payload that is sent back.
    */
   protected sendSuccess(
     res: Response,
-    data?: object
+    body: object = {}
   ): Response {
-    return res.status(200).json({
-      data
-    });
+    return res.status(200).json(body);
   }
 
   /**
@@ -45,7 +43,10 @@ export abstract class Controller {
    * @param res   The response object.
    * @param body  The payload that is sent back.
    */
-  protected sendError(res: Response, body?: object): Response {
+  protected sendError(
+    res: Response,
+    body: object = {}
+  ): Response {
     return res.status(500).json(body);
   }
 

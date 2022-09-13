@@ -63,7 +63,7 @@ export class SynonymController extends Controller{
     const requestDto = req.body as SynonymAddRequestDto;
     const { word, synonym } = requestDto;
     this.synonymService.addSynonymFor(word, synonym);
-    this.sendSuccess(res);
+    this.sendSuccess(res, requestDto);
   }
 
   private static buildResponseDto(word: string, synonyms: Set<string>): SynonymGetResponseDto {

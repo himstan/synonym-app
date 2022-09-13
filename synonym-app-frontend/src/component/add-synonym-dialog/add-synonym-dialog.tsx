@@ -22,7 +22,7 @@ export function AddSynonymDialog(props: AddSynonymDialogProps) {
   const toast = useRef(null);
 
   const saveSynonym = (): void => {
-    if (validateInput(synonym, setInputErrors, props.synonyms)) {
+    if (validateInput(synonym, setInputErrors, props.word, props.synonyms)) {
       synonymService.saveSynonym(props.word, synonym).subscribe({
         next: () => {
           showSuccessToast();
@@ -73,6 +73,7 @@ export function AddSynonymDialog(props: AddSynonymDialogProps) {
       <Dialog draggable={false} header={<span>Add synonym for <span className="word">{props.word}</span></span>} visible={props.isVisible} onHide={() => hideDialog()}>
         <div className="p-inputgroup">
           <input
+            role="add-input"
             type="text"
             className="synonym-input"
             placeholder={"Add synonym..."}
@@ -80,7 +81,7 @@ export function AddSynonymDialog(props: AddSynonymDialogProps) {
             onChange={(e) => setSynonym(getInputValue(e))}
             onKeyDown={handleKeyPress}
           />
-          <Button label="Add" onClick={saveSynonym}/>
+          <Button role="add-input-button" label="Add" onClick={saveSynonym}/>
         </div>
 
         <div className="input-error-container">
@@ -89,7 +90,7 @@ export function AddSynonymDialog(props: AddSynonymDialogProps) {
               <div className="input-errors">
                 {
                   hasError(InputError.MIN_LENGTH) && (
-                    <span>The word is required.</span>
+                    <span>A word is required.</span>
                   )
                 }
                 {
@@ -100,6 +101,11 @@ export function AddSynonymDialog(props: AddSynonymDialogProps) {
                 {
                   hasError(InputError.ALREADY_EXISTS) && (
                     <span>This synonym already exists.</span>
+                  )
+                }
+                {
+                  hasError(InputError.SYNONYM_CANT_BE_ITSELF) && (
+                    <span>The synonym can't be the word itself.</span>
                   )
                 }
               </div>

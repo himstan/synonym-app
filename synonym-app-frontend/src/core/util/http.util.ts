@@ -1,4 +1,4 @@
-import { from, map, mergeMap, Observable, throwError } from "rxjs";
+import { from, mergeMap, Observable, throwError } from "rxjs";
 import { fromFetch } from "rxjs/fetch";
 import { Method } from "../enum/method.enum";
 
@@ -20,8 +20,7 @@ export function request(path: string, method: Method, body?: object): Observable
         if (!result.ok) {
           throw throwError(() => result);
         } else {
-          return from(result.json())
-            .pipe(map(value => value.data));
+          return from(result.json());
         }
       }));
 }

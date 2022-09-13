@@ -76,7 +76,7 @@ function App() {
               <div className="input-errors">
                 {
                   hasError(InputError.MIN_LENGTH) && (
-                    <span>The word is required..</span>
+                    <span>A word is required.</span>
                   )
                 }
                 {
@@ -126,7 +126,7 @@ function App() {
             <div className="result-footer">
               {
                 isInputTouched && isInputValid() && (
-                  <Button onClick={() => setDialogVisibility(true)}>
+                  <Button role="add-button" onClick={() => setDialogVisibility(true)}>
                     <span>
                       Add synonym for <span className="word">{searchedUpWord}</span>
                     </span>

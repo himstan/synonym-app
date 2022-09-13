@@ -5,6 +5,7 @@ import { ChangeEvent, Dispatch, SetStateAction } from "react";
 export const validateInput = (
   word: string,
   setErrors: Dispatch<SetStateAction<InputError[]>>,
+  addingFor?: string,
   synonyms?: string[]
   ): boolean => {
   const errors = [];
@@ -16,6 +17,9 @@ export const validateInput = (
   }
   if (!!synonyms && synonyms.includes(word)) {
     errors.push(InputError.ALREADY_EXISTS);
+  }
+  if (!!addingFor && word === addingFor) {
+    errors.push(InputError.SYNONYM_CANT_BE_ITSELF);
   }
   setErrors(errors);
   return errors.length === 0;

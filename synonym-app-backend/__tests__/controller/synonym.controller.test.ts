@@ -23,9 +23,9 @@ describe('Synonym controller tests', () => {
       .get('/api/synonym/' + word)
       .set('Accept', 'application/json')
       .expect((res: request.Response) => {
-        const data = res.body.data;
-        expect(data.word).toBe(word);
-        expect(data.synonyms.length).toBe(0);
+        const body = res.body;
+        expect(body.word).toBe(word);
+        expect(body.synonyms.length).toBe(0);
       })
       .expect(StatusCodes.OK);
   });
@@ -95,10 +95,10 @@ describe('Synonym controller tests', () => {
       .get('/api/synonym/' + word)
       .set('Accept', 'application/json')
       .expect((res: request.Response) => {
-        const data = res.body.data;
-        expect(data.word).toBe(word);
-        expect(data.synonyms.length).toBe(1);
-        expect(data.synonyms[0]).toBe(synonym);
+        const body = res.body;
+        expect(body.word).toBe(word);
+        expect(body.synonyms.length).toBe(1);
+        expect(body.synonyms[0]).toBe(synonym);
       })
       .expect(StatusCodes.OK);
   }
